@@ -2,6 +2,7 @@
 const fs = require('fs');
 const prompt = require('prompt-sync')();
 const process = require('process');
+const { exec } = require('child_process');
 
 function remove_dir(dir_name) {
     fs.readdirSync(dir_name).forEach((f) => {
@@ -41,6 +42,9 @@ function initialize_project() {
     // console.log(process.cwd());
     fs.mkdirSync('models');
     fs.mkdirSync('routes');
+    exec('npm init -y', {'shell':'powershell.exe'}, (error, stdout, stderr)=> {
+        console.log(stdout);
+    })
     process.chdir('models');
     for (let i = 0; i < models.length; i++) {
         initialize_models(models[i]);
